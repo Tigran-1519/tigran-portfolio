@@ -1,0 +1,47 @@
+/* Editor and working process: scoped so standalone demos retain their design. */
+.portfolio-page .editor-section{padding:56px 0 72px}
+.portfolio-page .editor-lab{border:0}
+.lab-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--ink);padding:22px 0;color:var(--muted);font-size:13px}
+.lab-heading .lab-number{font-size:12px;color:var(--blue);letter-spacing:.02em}
+.lab-heading>span:last-child{display:flex;gap:18px;align-items:center}
+.lab-heading>span:last-child>span{font-size:24px;color:var(--blue)}
+.portfolio-page .editor-layout{display:block;padding:12px 0 0}
+.portfolio-page .editor-intro{display:grid;grid-template-columns:1.1fr .8fr;gap:0 60px;align-items:center;margin-bottom:32px}
+.portfolio-page .editor-intro h2{grid-row:1/3;font-size:clamp(32px,3.4vw,48px);line-height:1.1;letter-spacing:-.045em;margin:0;text-wrap:balance}
+.portfolio-page .editor-intro>p{font-size:16px;line-height:1.6;margin:0;align-self:end}
+.portfolio-page .editor-limitation{font-size:12px;margin-top:8px;align-self:start}
+.portfolio-page .editor-workspace{grid-template-columns:.85fr 1.15fr;gap:0;padding:0;background:#e8ebf1;border:1px solid #cdd2dd;border-radius:16px;overflow:hidden}
+.portfolio-page .editor-controls{background:transparent;color:var(--ink);padding:32px;border-radius:0;border-right:1px solid #cdd2dd}
+.portfolio-page .editor-toolbar{font-size:14px;margin-bottom:26px;gap:16px}
+.portfolio-page .quiet-button{min-height:44px;padding:8px;font-size:13px;color:var(--muted);text-decoration:none;border-radius:6px}
+.portfolio-page .quiet-button:hover{background:#dce2ec;color:var(--ink)}
+.portfolio-page .editor-controls label{font-size:13px;font-weight:500;margin-bottom:20px}
+.portfolio-page .editor-controls input,.portfolio-page .editor-controls textarea{font-size:16px;font-weight:400;line-height:1.55;padding:12px 14px;margin-top:8px;border:1px solid #b8c0ce;border-radius:6px;background:#f9fafc;color:var(--ink);caret-color:var(--blue)}
+.portfolio-page .editor-controls input:hover,.portfolio-page .editor-controls textarea:hover{border-color:#76859d}
+.portfolio-page .editor-controls input:focus-visible,.portfolio-page .editor-controls textarea:focus-visible{outline-offset:2px}
+.portfolio-page .editor-preview{padding:36px 40px;background:#fff;border-radius:0;min-height:440px;justify-content:center}
+.portfolio-page .preview-label{display:block;width:100%;font-size:11px;line-height:1.5;letter-spacing:.08em;border-bottom:1px solid #e0e3e9;padding-bottom:18px;margin-bottom:40px;color:var(--muted)}
+.portfolio-page .editor-preview h3{font-size:clamp(30px,3.3vw,46px);line-height:1.12;letter-spacing:-.045em;max-width:540px;margin-bottom:22px;text-wrap:balance}
+.portfolio-page .editor-preview>p{font-size:16px;line-height:1.65;max-width:460px;margin-bottom:26px}
+.portfolio-page .editor-preview .button{font-size:14px;min-height:48px;margin-top:auto;padding:14px 22px;max-width:100%;text-align:left}
+.portfolio-page .editor-preview .preview-note{font-size:12px!important;line-height:1.6;margin:16px 0 0;min-height:38px}
+.portfolio-page .approach{padding:40px 0 80px}
+.process-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:88px;align-items:start;border-top:1px solid var(--ink);padding-top:44px}
+.portfolio-page .approach-header{display:block}
+.portfolio-page .approach-header>.eyebrow{font-size:12px;margin:0 0 30px;letter-spacing:.07em}
+.portfolio-page .approach-header h2{font-size:clamp(38px,4.3vw,60px);line-height:1.05;margin-bottom:26px;letter-spacing:-.05em}
+.portfolio-page .approach-header>p:not(.eyebrow){font-size:16px;line-height:1.65;color:var(--muted);max-width:340px;margin:0 0 24px}
+.process-contact{display:inline-flex;gap:28px;align-items:center;min-height:48px;font-size:14px;font-weight:600;border-bottom:1px solid var(--line)}
+.process-contact>span{font-size:23px;color:var(--blue)}
+.process-contact:hover{color:var(--blue);border-color:var(--blue)}
+.portfolio-page .process{display:block;margin:0;padding:0;list-style:none}
+.portfolio-page .process li{display:grid;grid-template-columns:60px minmax(0,1fr);gap:24px;padding:28px 0 30px;border-top:1px solid var(--line)}
+.portfolio-page .process li:first-child{padding-top:0;border-top:0}
+.portfolio-page .step-number{font-size:38px;line-height:1.1;font-weight:400;letter-spacing:-.05em;font-variant-numeric:tabular-nums;color:#8090b0;margin:0}
+.portfolio-page .process h3{font-size:25px;line-height:1.2;letter-spacing:-.035em;margin:0 0 12px;text-wrap:balance}
+.portfolio-page .process p{font-size:16px;line-height:1.65;max-width:520px;margin:0}
+.step-result{display:flex;gap:10px;align-items:baseline;font-size:13px;line-height:1.5;color:var(--blue);margin-top:18px}
+.step-result>span{font-size:19px}
+.portfolio-page .delivery-proof{margin-top:38px}
+@media(max-width:900px){.process-layout{gap:40px;grid-template-columns:.75fr 1.25fr}.portfolio-page .process li{grid-template-columns:40px minmax(0,1fr);gap:18px}.portfolio-page .step-number{font-size:30px}.portfolio-page .process h3{font-size:23px}.portfolio-page .editor-controls{padding:24px}.portfolio-page .editor-preview{padding:28px}.portfolio-page .editor-intro{gap:24px}}
+@media(max-width:600px){.portfolio-page .editor-section{padding:32px 0 44px}.lab-heading{font-size:11px;gap:14px;padding:18px 0}.lab-heading .lab-number{font-size:11px}.lab-heading>span:last-child{gap:10px}.portfolio-page .editor-intro{display:block;margin:10px 0 26px}.portfolio-page .editor-intro h2{font-size:34px;line-height:1.12;margin-bottom:18px}.portfolio-page .editor-intro>p{font-size:16px}.portfolio-page .editor-limitation{font-size:12px;margin-top:9px}.portfolio-page .editor-workspace{grid-template-columns:1fr;border-radius:12px}.portfolio-page .editor-controls{padding:20px;border-right:0;border-bottom:1px solid #cdd2dd}.portfolio-page .editor-toolbar{font-size:14px;margin-bottom:14px}.portfolio-page .editor-controls label{font-size:13px}.portfolio-page .editor-controls input,.portfolio-page .editor-controls textarea{font-size:16px}.portfolio-page .editor-preview{padding:26px 22px;min-height:340px}.portfolio-page .preview-label{font-size:10px;margin-bottom:26px}.portfolio-page .editor-preview h3{font-size:34px}.portfolio-page .editor-preview>p{font-size:16px}.portfolio-page .approach{padding:16px 0 44px}.process-layout{display:block;padding-top:30px}.portfolio-page .approach-header>.eyebrow{margin-bottom:22px}.portfolio-page .approach-header h2{font-size:44px;margin-bottom:24px}.portfolio-page .approach-header>p:not(.eyebrow){font-size:16px;max-width:none}.process-contact{margin-bottom:34px}.portfolio-page .process li,.portfolio-page .process li:first-child{padding:25px 0;border-top:1px solid var(--line);grid-template-columns:36px minmax(0,1fr);gap:18px}.portfolio-page .step-number{font-size:28px}.portfolio-page .process h3{font-size:23px}.portfolio-page .process p{font-size:16px}.step-result{font-size:13px;margin-top:14px}.portfolio-page .delivery-proof{margin-top:24px}}
