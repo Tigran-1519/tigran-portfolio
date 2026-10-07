@@ -18,3 +18,46 @@
 @media(max-width:850px){.project-index{gap:13px}.project-jump{gap:7px}.project-jump strong{font-size:11px}.project-jump small{font-size:8px}.jump-number{font-size:8px}.jump-arrow{font-size:16px}.case-intro>.case-try{grid-column:1/-1;grid-row:6;max-width:540px;margin:23px 0 0}.case-intro .case-try>p{font-size:12px}}
 @media(max-width:600px){.project-browser{margin-bottom:32px}.project-browser-label{font-size:11px;margin-bottom:13px}.project-index{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--blue) transparent;padding:5px 3px 12px;margin:-5px -3px 0}.project-jump{flex:0 0 184px;min-height:72px;scroll-snap-align:start;gap:10px}.project-jump strong{font-size:14px}.project-jump small{font-size:10px}.jump-number{font-size:10px}.jump-arrow{font-size:20px}.portfolio-page .case-copy>p{font-size:14px;line-height:1.65}.portfolio-page .case-index{font-size:9px}.portfolio-page .case-status{font-size:10px}.portfolio-page .case-open{font-size:13px;min-height:44px;padding-left:8px}.portfolio-page .case-open span{width:40px;height:40px;font-size:24px}.portfolio-page .case-bottom{gap:14px;align-items:center}.portfolio-page .case-intro>p:not(.case-statement){font-size:12px}.portfolio-page .case-intro .button{min-height:44px;font-size:11px}.case-try{padding-left:13px;margin:20px 0 23px}.case-try>span{font-size:9px}.case-try>p,.case-intro .case-try>p{font-size:13px}.portfolio-page .case-intro>.case-try{margin-top:24px}.portfolio-page .case-copy{padding-top:22px}}
 
+
+/* A client can understand the service, read the proof and discuss a result. */
+.portfolio-page .identity{font-size:12px;line-height:1.45}
+.portfolio-page .main-nav{font-size:14px}
+.portfolio-page .hero{grid-template-columns:minmax(0,1.5fr) minmax(250px,.65fr);gap:36px;padding-top:40px}
+.portfolio-page .hero h1{font-size:clamp(66px,8.2vw,118px);line-height:.99;letter-spacing:-.065em}
+.portfolio-page .hero-name .eyebrow{font-size:11px;margin-bottom:26px;letter-spacing:.08em}
+.portfolio-page .hero-summary{max-width:340px;align-self:center;padding:0}
+.portfolio-page .hero-summary h2{font-size:32px;line-height:1.1;letter-spacing:-.04em}
+.portfolio-page .hero-summary p{font-size:16px;line-height:1.65;margin-bottom:24px}
+.portfolio-page .hero-summary .hero-next{font-size:13px;line-height:1.6;margin:18px 0 0}
+.portfolio-page .hero-summary .button{font-size:14px;min-height:48px}
+.portfolio-page .hero-bottom{margin-top:30px;font-size:12px;flex-wrap:wrap}
+.portfolio-page .work-heading p{font-size:14px}
+.portfolio-page .case-copy>p,.portfolio-page .case-intro>p:not(.case-statement){font-size:16px;line-height:1.65}
+.portfolio-page .case-index,.portfolio-page .case-status{font-size:11px}
+.portfolio-page .case-try>p,.portfolio-page .case-intro .case-try>p{font-size:14px}
+.portfolio-page .case-try>span{font-size:10px}
+.portfolio-page .case-open{font-size:14px;min-height:44px}
+.portfolio-page .case-bottom{flex-wrap:wrap}
+.portfolio-page .project-jump strong{font-size:14px}
+.portfolio-page .project-jump small{font-size:12px}
+.portfolio-page .project-browser-label{font-size:12px}
+.portfolio-page .approach-header>p:last-child,.portfolio-page .process p{font-size:15px;line-height:1.6}
+.portfolio-page .process p{max-width:none}
+.delivery-proof{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;margin-top:70px;padding-top:40px;border-top:1px solid var(--ink)}
+.delivery-intro h3{font-size:40px;line-height:1.08;margin:20px 0}
+.delivery-intro>p:last-child{font-size:16px;line-height:1.65;color:var(--muted);max-width:370px}
+.delivery-list{border-top:1px solid var(--line)}
+.delivery-list details{border-bottom:1px solid var(--line)}
+.delivery-list summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:74px;padding:20px 0;cursor:pointer;font-size:19px;font-weight:600;line-height:1.4}
+.delivery-list summary::-webkit-details-marker{display:none}
+.delivery-list summary:hover{color:var(--blue)}
+.delivery-list summary>span:last-child{font-size:28px;color:var(--blue);font-weight:400;transition:transform .2s ease}
+.delivery-list details[open] summary>span:last-child{transform:rotate(45deg)}
+.delivery-detail{padding:0 20px 25px 0}
+.delivery-detail p{font-size:15px;line-height:1.7;margin-bottom:16px}
+.delivery-detail strong{font-weight:600}
+.delivery-detail .delivery-note{font-size:13px;color:var(--muted)}
+.delivery-detail .text-link{font-size:14px;line-height:1.5;min-height:44px;display:inline-flex;align-items:center}
+.portfolio-page .contact-bottom p{font-size:16px}
+@media(max-width:1000px){.portfolio-page .hero{grid-template-columns:minmax(0,1.3fr) minmax(230px,.8fr);gap:28px}.portfolio-page .hero h1{font-size:8vw}.portfolio-page .hero-summary h2{font-size:28px}.portfolio-page .hero-summary p{font-size:15px}.portfolio-page .hero-name .eyebrow{max-width:250px;line-height:1.6}.delivery-proof{gap:35px}.delivery-intro h3{font-size:32px}}
+@media(max-width:600px){.portfolio-page .identity{font-size:10px}.portfolio-page .main-nav{font-size:12px;gap:15px}.portfolio-page .hero{display:block;padding-top:24px}.portfolio-page .hero h1{font-size:clamp(47px,12.3vw,74px);line-height:1.04}.portfolio-page .hero-name .eyebrow{max-width:none;font-size:10px;letter-spacing:.05em;margin-bottom:22px}.portfolio-page .hero-summary{display:block;margin-top:28px;max-width:none}.portfolio-page .hero-summary h2{font-size:25px;margin-bottom:16px}.portfolio-page .hero-summary h2 br{display:none}.portfolio-page .hero-summary p{font-size:16px;margin-bottom:20px}.portfolio-page .hero-summary .button{font-size:14px;min-height:48px;padding-inline:19px 9px}.portfolio-page .hero-summary .hero-next{font-size:13px;max-width:330px;margin-top:16px}.portfolio-page .hero-bottom{font-size:11px;gap:12px;margin-top:30px}.portfolio-page .hero-bottom>span:first-child{max-width:200px}.portfolio-page .work-heading{display:block}.portfolio-page .work-heading p{font-size:14px;max-width:none;margin-top:20px}.portfolio-page .case-intro{display:block}.portfolio-page .case-intro .case-statement{margin:17px 0;font-size:25px!important}.portfolio-page .case-intro>p:not(.case-statement){font-size:16px;max-width:none;margin-bottom:20px}.portfolio-page .case-intro .case-features{font-size:11px;margin:16px 0}.portfolio-page .case-intro .case-status{font-size:11px}.portfolio-page .case-intro .button{font-size:14px;min-height:48px}.portfolio-page .case-intro .case-try{margin:20px 0;max-width:none}.portfolio-page .case-copy>p{font-size:16px}.portfolio-page .case-bottom{align-items:center}.portfolio-page .case-status{max-width:210px}.portfolio-page .process p,.portfolio-page .approach-header>p:last-child{font-size:15px}.delivery-proof{display:block;margin-top:40px;padding-top:30px}.delivery-intro>p:last-child{font-size:16px}.delivery-list{margin-top:28px}.delivery-list summary{font-size:18px;min-height:70px}.delivery-detail{padding-right:0}.delivery-detail p{font-size:16px}.portfolio-page .contact-bottom{display:block}.portfolio-page .contact-bottom p{font-size:15px;margin-bottom:24px}.portfolio-page .contact-bottom a{font-size:22px;display:inline-flex;align-items:center;min-height:44px}}
