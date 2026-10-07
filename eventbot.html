@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fb4b16">
+  <meta name="description" content="EventBot — браузерная демонстрация выбора формата и сессии вымышленного события. Без регистрации, контактов и отправки данных.">
+  <title>EventBot / SHIFT — демонстрация события</title>
+  <link rel="stylesheet" href="eventbot.css">
+  <script src="eventbot.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="site-header page-width">
+    <a class="back-link" href="./"><span aria-hidden="true">↖</span> Портфолио Тиграна</a>
+    <a class="eventbot-mark" href="eventbot.html" aria-label="EventBot, начало страницы">Event<span>Bot</span><i aria-hidden="true"></i></a>
+    <a class="author-link" href="https://t.me/tigr_SH" target="_blank" rel="noopener noreferrer">Обсудить бота <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="main" class="page-width">
+    <div class="demo-notice"><span class="demo-dot" aria-hidden="true"></span><p>Браузерное демо. Событие, дата и организатор вымышлены.</p><span class="notice-tag">LOCAL / DEMO</span></div>
+    <section class="event-layout" aria-labelledby="event-title">
+      <div class="event-information">
+        <div class="event-poster">
+          <div class="poster-top"><span>ФОРУМ ПРАКТИЧЕСКИХ ИДЕЙ</span><span>01 / 2030</span></div>
+          <h1 id="event-title">SHIFT<span class="title-asterisk" aria-hidden="true">✳</span></h1>
+          <p class="poster-subtitle">Сдвинуть идею.<br>Начать делать.</p>
+          <div class="poster-bottom"><span class="event-date">16 <small>АПРЕЛЯ<br>2030</small></span><span class="poster-number" aria-hidden="true">↗</span></div>
+          <div class="poster-stripe" aria-hidden="true"></div>
+        </div>
+        <div class="event-caption"><p>Пример события для тех, кто превращает технологии в понятные рабочие процессы.</p><p>Организатор: вымышленная студия «Сдвиг». Указанная дата — часть демонстрации.</p></div>
+        <section class="program" aria-labelledby="program-title">
+          <div class="program-heading"><div><span class="section-kicker">ПРОГРАММА / ПРИМЕР</span><h2 id="program-title">Три точки входа</h2></div><span id="program-format" class="format-pill">Очно</span></div>
+          <p class="program-description">Выберите формат в диалоге — программа изменится. Все сессии и время условные.</p>
+          <ol id="program-list" class="program-list"></ol>
+          <div class="program-footer"><span id="program-location">Демонстрационный зал</span><span>ОДНА СЕССИЯ НА БЕЙДЖ</span></div>
+        </section>
+      </div>
+      <section class="conversation" aria-labelledby="conversation-title">
+        <div class="conversation-heading"><div class="bot-icon" aria-hidden="true">e<span>↗</span></div><div><h2 id="conversation-title">EventBot</h2><p><span class="online-dot" aria-hidden="true"></span> Выбор участия / симулятор</p></div><button id="restart-top" class="icon-button" type="button" aria-label="Начать сценарий заново" title="Начать заново">↺</button></div>
+        <div class="step-summary"><span id="step-number">01 / 03</span><span id="step-title">Формат участия</span><span id="step-completion">33%</span></div>
+        <div class="step-track" aria-hidden="true"><span id="step-track-fill"></span></div>
+        <div id="messages" class="messages" role="log" aria-label="Диалог с EventBot" aria-live="off" tabindex="0"></div>
+        <form id="registration-form" class="registration-form">
+          <fieldset id="format-panel" class="step-panel">
+            <legend>Как вам удобнее участвовать?</legend>
+            <div class="format-options">
+              <label class="format-option"><input type="radio" name="format" value="venue" checked><span class="format-card"><span class="format-symbol" aria-hidden="true">↗</span><strong>Очно</strong><small>Разговоры и практикум<br>в демонстрационном зале</small><span class="selection-mark" aria-hidden="true">✓</span></span></label>
+              <label class="format-option"><input type="radio" name="format" value="online"><span class="format-card"><span class="format-symbol" aria-hidden="true">◎</span><strong>Онлайн</strong><small>Разборы и дискуссии<br>в условной трансляции</small><span class="selection-mark" aria-hidden="true">✓</span></span></label>
+            </div>
+          </fieldset>
+          <fieldset id="session-panel" class="step-panel" hidden disabled><legend>Выберите одну сессию</legend><div id="session-options" class="session-options"></div></fieldset>
+          <fieldset id="interest-panel" class="step-panel" hidden disabled>
+            <legend>С чем хотите прийти?</legend>
+            <label class="field-label" for="interest">Тема интереса<select id="interest" name="interest"><option>Автоматизация рутины</option><option>Сайты и клиентский опыт</option><option>Работа с AI-инструментами</option><option>Пока присматриваюсь</option></select></label>
+            <label class="field-label" for="question">Вопрос спикеру <span>(необязательно)</span><textarea id="question" name="question" rows="3" maxlength="180" placeholder="Например: с какой небольшой автоматизации начать?" aria-describedby="question-hint question-count"></textarea></label>
+            <div class="question-meta"><p id="question-hint">Пишите пример вопроса, без имени, телефона и других личных данных.</p><span id="question-count">0 / 180</span></div>
+          </fieldset>
+          <div class="form-actions"><button id="previous-step" class="secondary-button" type="button" disabled><span aria-hidden="true">←</span> Назад</button><button id="next-step" class="primary-button" type="submit">Выбрать сессию <span aria-hidden="true">→</span></button></div>
+        </form>
+        <section id="result" class="result" aria-labelledby="result-title" hidden>
+          <h3 id="result-title" tabindex="-1">Ваш пример участия</h3>
+          <div class="demo-badge"><div class="badge-heading"><span>SHIFT / 2030</span><span class="badge-demo">DEMO</span></div><div class="badge-body"><p class="badge-label">УЧАСТНИК ПРИМЕРА</p><strong class="badge-name">ГОСТЬ<span aria-hidden="true">↗</span></strong><div class="badge-session"><span id="badge-format">ОЧНО</span><h4 id="badge-session-title"></h4><p id="badge-session-time"></p></div></div><div class="badge-tear" aria-hidden="true"></div><div class="badge-bottom"><span>ДЕМОНСТРАЦИОННЫЙ БЕЙДЖ</span><strong>НЕ ЯВЛЯЕТСЯ БИЛЕТОМ</strong></div></div>
+          <p class="result-note">Так может выглядеть итог диалога. Участие не зарегистрировано, доступ к событию не выдан.</p>
+          <label class="field-label" for="result-text">Структурированный текст<textarea id="result-text" rows="9" readonly></textarea></label>
+          <button id="copy-result" class="primary-button copy-button" type="button">Скопировать пример <span aria-hidden="true">↗</span></button>
+          <p id="copy-status" class="copy-status" role="status"></p>
+          <div class="result-actions"><button id="edit-result" class="secondary-button" type="button">← Изменить ответы</button><button id="restart-result" class="text-button" type="button">Начать заново ↺</button></div>
+        </section>
+        <div class="conversation-footer"><span class="local-mark" aria-hidden="true">⌁</span><p>Ничего не отправляется в Telegram и не сохраняется. Без контактов и платежей.</p></div>
+        <p id="step-status" class="sr-only" role="status"></p>
+      </section>
+    </section>
+    <section class="scenario-caption" aria-labelledby="scenario-title"><span class="section-kicker">ЗА ЭКРАНОМ</span><h2 id="scenario-title">Один выбор.<br><span>Понятный следующий шаг.</span></h2><p>Сценарий меняет программу по формату, сохраняет ответы при переходе назад и превращает их в короткую сводку. Здесь показана логика интерфейса — подключение рабочего бота обсуждается отдельно.</p></section>
+  </main>
+  <footer class="site-footer page-width"><span>EventBot — демонстрация Тиграна Шогояна</span><a href="./">Все проекты ↗</a><a href="https://t.me/tigr_SH" target="_blank" rel="noopener noreferrer">@tigr_SH ↗</a></footer>
+  <noscript><p class="no-script">Для работы симулятора включите JavaScript. Страница и описание события доступны без него.</p></noscript>
+</body>
+</html>

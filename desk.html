@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BriefDesk — интерактивная демонстрация кабинета заявок. Поиск, статусы, редактирование и экспорт данных на этом устройстве.">
+  <meta name="theme-color" content="#24283b">
+  <title>BriefDesk — кабинет заявок | Тигран Шогоян</title>
+  <link rel="stylesheet" href="desk.css">
+  <script src="desk.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#workspace">К заявкам</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="BriefDesk">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">b<span>•</span></span><span>BriefDesk<small>ПРОЕКТНЫЙ КАБИНЕТ</small></span></a>
+      <div class="space-label">РАБОЧЕЕ ПРОСТРАНСТВО</div>
+      <button class="nav-item selected" id="all-nav" type="button"><span class="nav-icon" aria-hidden="true">▦</span> Все заявки <span class="nav-count" id="side-total">0</span></button>
+      <div class="side-note"><span class="side-note-label">Порядок в маленьких задачах</span><p>От первого сообщения до готового результата. Один понятный список вместо разрозненных заметок.</p></div>
+      <div class="sidebar-bottom"><span class="device-dot" aria-hidden="true"></span><strong>Личное демо</strong><p>На этом устройстве.<br>Не подключено к CRM.</p><a href="./">← Портфолио</a><a href="https://t.me/tigr_SH" target="_blank" rel="noopener noreferrer">Связаться с Тиграном ↗</a></div>
+    </aside>
+
+    <main id="workspace" class="workspace">
+      <header class="topbar"><span class="breadcrumb">Демонстрации <span aria-hidden="true">/</span> BriefDesk</span><span class="local-badge"><span aria-hidden="true">●</span> LOCAL WORKSPACE</span></header>
+      <section class="page-heading" aria-labelledby="page-title"><div><p class="eyebrow">Всё важное — на одном экране</p><h1 id="page-title">Заявки<span class="title-dot">.</span></h1><p class="intro">Соберите вводные, назначьте статус и двигайтесь дальше.</p></div><button class="button primary" id="add-task" type="button"><span aria-hidden="true">＋</span> Новая заявка</button></section>
+
+      <div class="demo-notice"><span class="notice-icon" aria-hidden="true">i</span><p><strong>Это работающая демонстрация на этом устройстве.</strong> Карточки вымышленные. Изменения сохраняются в браузере, без отправки в CRM или другим людям.</p></div>
+      <section class="metrics" aria-label="Статистика текущих заявок"><article class="metric"><span>Всего заявок</span><strong id="metric-total">0</strong><small>в вашем локальном списке</small></article><article class="metric"><span>В работе</span><strong id="metric-progress">0</strong><small>задачи с активным статусом</small></article><article class="metric"><span>Готово</span><strong id="metric-done">0</strong><div class="progress-track" aria-hidden="true"><span id="done-bar"></span></div><small id="done-ratio">0% от общего числа</small></article><article class="metric deadline-metric"><span>Срок прошёл</span><strong id="metric-overdue">0</strong><small>незавершённые заявки со сроком до сегодня</small></article></section>
+
+      <section class="inbox" aria-labelledby="inbox-heading"><div class="section-heading"><h2 id="inbox-heading">Доска задач <span id="result-count">0</span></h2><p id="storage-status" class="storage-status" role="status">Подготовка рабочего пространства…</p></div><div class="toolbar"><label class="search-field"><span aria-hidden="true">⌕</span><span class="sr-only">Поиск по названию, проекту и заметке</span><input id="search" type="search" placeholder="Найти заявку или проект" autocomplete="off"></label><label class="select-field"><span class="sr-only">Статус</span><select id="status-filter"><option value="all">Все статусы</option><option value="new">Новая</option><option value="progress">В работе</option><option value="done">Готово</option></select></label><label class="select-field"><span class="sr-only">Порядок заявок</span><select id="sort-order"><option value="updated">Последние изменения</option><option value="due">По сроку</option><option value="title">По названию</option></select></label></div><div class="board" id="board"></div><p class="board-empty" id="board-empty" hidden>По вашему запросу ничего не найдено. Измените поиск или добавьте заявку.</p></section>
+
+      <footer class="data-footer"><div><strong>Ваши данные под рукой</strong><p>JSON-файл можно сохранить и вернуть в эту демонстрацию.</p></div><div class="data-actions"><button class="button subtle" id="export-tasks" type="button">↓ Экспорт</button><button class="button subtle" id="import-tasks" type="button">↑ Импорт</button><button class="text-button" id="reset-tasks" type="button">Сбросить демо</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></footer>
+      <p id="announcement" class="announcement" role="status" aria-live="polite"></p>
+      <noscript><p class="demo-notice">Для работы демонстрации включите JavaScript. Данные никуда не отправляются.</p></noscript>
+    </main>
+  </div>
+
+  <dialog class="editor-dialog" id="editor" aria-labelledby="editor-title"><form id="task-form"><div class="dialog-top"><div><p class="eyebrow">BRIEFDESK / ЗАЯВКА</p><h2 id="editor-title">Новая заявка</h2></div><button class="icon-button" id="close-editor" type="button" aria-label="Закрыть редактор">×</button></div><label class="field">Название задачи<input name="title" id="task-title" maxlength="100" required placeholder="Например, форма заявки на сайте"></label><label class="field">Проект или заказчик<input name="client" id="task-client" maxlength="70" required placeholder="Название проекта"></label><label class="field">Что нужно сделать<textarea name="note" id="task-note" rows="4" maxlength="1200" placeholder="Короткие вводные, важные детали, следующий шаг"></textarea></label><div class="form-row"><label class="field">Статус<select name="status" id="task-status"><option value="new">Новая</option><option value="progress">В работе</option><option value="done">Готово</option></select></label><label class="field">Приоритет<select name="priority" id="task-priority"><option value="normal">Обычный</option><option value="high">Высокий</option></select></label></div><label class="field">Ориентир по сроку <span class="optional">необязательно</span><input name="due" id="task-due" type="date"></label><p id="form-error" class="form-error" role="alert"></p><div class="dialog-actions"><button class="text-button danger" id="delete-task" type="button" hidden>Удалить заявку</button><div><button class="button subtle" id="cancel-editor" type="button">Отмена</button><button class="button primary" type="submit">Сохранить</button></div></div></form></dialog>
+
+  <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title"><div class="confirm-symbol" aria-hidden="true">↺</div><h2 id="confirm-title">Подтвердить действие</h2><p id="confirm-text"></p><div class="dialog-actions"><button class="button subtle" id="confirm-cancel" type="button">Отмена</button><button class="button primary" id="confirm-accept" type="button">Подтвердить</button></div></dialog>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Slotly — демонстрация страницы записи: услуга, календарь и удобное время. Локальный выбор без реального бронирования.">
+  <meta name="theme-color" content="#f8f7fc">
+  <title>Slotly — выбрать удобное время | Тигран Шогоян</title>
+  <link rel="stylesheet" href="slotly.css">
+  <script src="slotly.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#booking">К выбору времени</a>
+  <header class="site-header"><a class="logo" href="./" aria-label="Slotly — назад в портфолио">slotly<span>✳</span></a><span class="header-label">Время для хороших идей</span><a class="back-link" href="./">← Портфолио</a></header>
+
+  <main id="booking" class="booking-shell">
+    <section class="intro"><div><p class="eyebrow"><span aria-hidden="true"></span> ИНТЕРАКТИВНЫЙ СЕРВИС / ДЕМО</p><h1>Давайте найдём<br><em>удобное время.</em></h1><p class="lead">Выберите тему, день и интервал.<br>Остальное уже собрано в понятную карточку.</p></div><div class="intro-aside"><span class="mini-clock" aria-hidden="true"><i></i><b></b></span><p>Сначала план.<br>Потом — хороший разговор.</p></div></section>
+
+    <div class="booking-layout">
+      <div class="booking-steps">
+        <section class="step service-step" aria-labelledby="service-heading"><div class="step-heading"><span class="step-number">01</span><div><h2 id="service-heading">О чём поговорим?</h2><p>Три демонстрационных формата встречи</p></div></div><div id="service-options" class="service-options"></div></section>
+
+        <section class="step calendar-step" aria-labelledby="calendar-heading"><div class="step-heading"><span class="step-number">02</span><div><h2 id="calendar-heading">Выберите день</h2><p>Ближайшие семь дней · воскресенье выходной</p></div><span id="calendar-range" class="calendar-range"></span></div><div class="calendar-top"><span id="calendar-month"></span><span class="calendar-legend"><i aria-hidden="true"></i> Доступны демо-интервалы</span></div><div id="calendar-days" class="calendar-days" aria-label="Календарь ближайшей недели"></div><p class="timezone-note" id="timezone-note"></p></section>
+
+        <section class="step time-step" aria-labelledby="time-heading"><div class="step-heading"><span class="step-number">03</span><div><h2 id="time-heading">И подходящий интервал</h2><p id="time-date">Выберите день в календаре</p></div></div><div id="time-options" class="time-options" aria-label="Демонстрационные интервалы"></div><details class="availability-note"><summary>Откуда берутся занятые интервалы?</summary><p>Это заранее заданный набор для демонстрации интерфейса. Он не связан с календарём Тиграна, оплатой или реальной доступностью. Локальное подтверждение не занимает интервал.</p><ul id="busy-list"></ul></details></section>
+      </div>
+
+      <aside class="summary-rail" aria-labelledby="summary-heading"><div class="summary-card"><div class="summary-top"><span>ВАШ ВЫБОР</span><span class="summary-star" aria-hidden="true">✳</span></div><h2 id="summary-heading">Небольшая встреча.<br>Понятный следующий шаг.</h2><div class="service-summary"><span class="summary-icon" id="summary-icon" aria-hidden="true">↗</span><div><strong id="summary-service">Тема встречи</strong><span id="summary-duration">Продолжительность</span></div></div><dl class="summary-details"><div><dt>День</dt><dd id="summary-date">—</dd></div><div><dt>Начало</dt><dd id="summary-time">Выберите интервал</dd></div><div><dt>Формат</dt><dd>Онлайн · демонстрация</dd></div></dl><div class="summary-note"><span aria-hidden="true">◎</span><p>Без телефона, почты и оплаты. Можно попробовать весь путь выбора.</p></div><button id="confirm-choice" class="confirm-button" type="button" disabled>Подтвердить выбор <span aria-hidden="true">↗</span></button><div id="confirmation" class="confirmation" hidden><span aria-hidden="true">✓</span><div><strong>Выбор сохранён локально</strong><p>Это демонстрация. Реальная встреча не забронирована.</p></div></div><div class="summary-actions"><button id="edit-choice" type="button" hidden>Изменить выбор</button><button id="reset-choice" type="button">Начать заново</button></div><p class="storage-note" id="storage-note">Данные остаются на этом устройстве.</p></div><div class="author-card"><span class="author-avatar" aria-hidden="true">ТШ</span><div><strong>Тигран Шогоян</strong><p>Автор демонстрации</p></div><a href="https://t.me/tigr_SH" target="_blank" rel="noopener noreferrer" aria-label="Связаться с Тиграном в Telegram">↗</a></div><p class="rail-disclaimer">Нужна настоящая встреча?<br><a href="https://t.me/tigr_SH" target="_blank" rel="noopener noreferrer">Согласуйте время в Telegram</a>.</p></aside>
+    </div>
+    <p class="announcement" id="announcement" aria-live="polite" role="status"></p>
+    <noscript><p class="no-script">Включите JavaScript, чтобы попробовать календарь. Демо не отправляет данные.</p></noscript>
+  </main>
+
+  <footer class="site-footer"><span>Slotly / собственный демонстрационный проект</span><span>Выбор без лишних шагов <i aria-hidden="true">✳</i></span></footer>
+  <dialog id="reset-dialog" class="reset-dialog" aria-labelledby="reset-title"><span class="dialog-symbol" aria-hidden="true">↺</span><h2 id="reset-title">Начнём с чистого листа?</h2><p>Локально сохранённый выбор будет удалён. Можно снова выбрать услугу, день и интервал.</p><div><button id="cancel-reset" class="cancel-button" type="button">Оставить выбор</button><button id="accept-reset" class="accept-button" type="button">Сбросить</button></div></dialog>
+</body>
+</html>
