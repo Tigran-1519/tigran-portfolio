@@ -34,6 +34,7 @@
   }
   try {
     const raw = localStorage.getItem(KEY);
+    if (raw !== null && raw.length > 4096) throw new Error('Stored data too large');
     if (raw !== null) {
       const previous = validateStored(JSON.parse(raw));
       serviceId = previous.serviceId; selectedDay = previous.date; selectedTime = previous.time; confirmed = true;

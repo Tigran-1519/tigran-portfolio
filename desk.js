@@ -47,6 +47,7 @@
   let initialNotice = '';
   try {
     const raw = localStorage.getItem(KEY);
+    if (raw !== null && raw.length > 1048576) throw new Error('Stored data too large');
     if (raw !== null) tasks = validate(JSON.parse(raw));
   } catch (error) {
     storageFailed = true;

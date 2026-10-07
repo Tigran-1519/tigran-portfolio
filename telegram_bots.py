@@ -11,6 +11,7 @@ import secrets
 import time
 import urllib.error
 import urllib.request
+from collections import OrderedDict, deque
 from dataclasses import dataclass, field
 
 
@@ -56,6 +57,34 @@ class DemoBot:
         self.api = api
         self.mode = mode
         self.sessions: dict[int, Session] = {}
+        self._traffic = OrderedDict()
+        self._global_traffic = deque()
+
+    def prune_sessions(self):
+        now = time.monotonic()
+        for chat in list(self.sessions):
+            if now - self.sessions[chat].touched >= 1800:
+                self.sessions.pop(chat, None)
+        for chat, recent in list(self._traffic.items()):
+            if not recent or now - recent[-1] >= 10:
+                self._traffic.pop(chat, None)
+
+    def allow_update(self, chat):
+        now = time.monotonic()
+        while self._global_traffic and now - self._global_traffic[0] >= 1:
+            self._global_traffic.popleft()
+        recent = self._traffic.get(chat, deque())
+        while recent and now - recent[0] >= 10:
+            recent.popleft()
+        if len(recent) >= 12 or len(self._global_traffic) >= 20:
+            return False
+        if chat not in self._traffic and len(self._traffic) >= 2000:
+            self._traffic.popitem(last=False)
+        recent.append(now)
+        self._traffic[chat] = recent
+        self._traffic.move_to_end(chat)
+        self._global_traffic.append(now)
+        return True
 
     def send(self, chat, text, keyboard=None):
         payload = {"chat_id": chat, "text": text}
@@ -109,15 +138,38 @@ class DemoBot:
         self.sessions.pop(chat, None)
 
     def handle(self, update):
+        self.prune_sessions()
+        if not isinstance(update, dict):
+            return
         callback = update.get("callback_query")
+        if callback is not None and not isinstance(callback, dict):
+            return
         message = callback.get("message", {}) if callback else update.get("message", {})
-        chat = message.get("chat", {}).get("id")
+        if not isinstance(message, dict) or not isinstance(message.get("chat"), dict):
+            return
+        chat_info = message["chat"]
+        chat = chat_info.get("id")
+        sender = callback.get("from", {}) if callback else message.get("from", {})
+        if (chat_info.get("type") != "private" or type(chat) is not int or chat <= 0
+                or not isinstance(sender, dict) or sender.get("id") != chat or sender.get("is_bot")):
+            return
+        if callback and (not isinstance(callback.get("id"), str)
+                         or not isinstance(callback.get("data"), str)
+                         or not callback["data"].isascii()
+                         or len(callback["data"]) > 64):
+            return
+        if not callback and not isinstance(message.get("text", ""), str):
+            return
+        if not self.allow_update(chat):
+            return
         previous = self.sessions.get(chat)
         snapshot = Session(previous.nonce, list(previous.answers), previous.touched) if previous else None
         try:
             self._handle(update)
         except ApiError:
-            if snapshot is not None:
+            words = message.get("text", "").strip().split(maxsplit=1) if not callback else []
+            cancelled = not callback and bool(words) and words[0].split("@", 1)[0] == "/cancel"
+            if snapshot is not None and not cancelled:
                 self.sessions[chat] = snapshot
             else:
                 self.sessions.pop(chat, None)
@@ -125,9 +177,6 @@ class DemoBot:
 
     def _handle(self, update):
         now = time.monotonic()
-        for chat in list(self.sessions):
-            if now - self.sessions[chat].touched > 1800:
-                self.sessions.pop(chat)
         callback = update.get("callback_query")
         message = callback.get("message", {}) if callback else update.get("message", {})
         chat_info = message.get("chat", {})
@@ -175,7 +224,7 @@ class DemoBot:
             elif step == 3 and choice == "skip":
                 self.finish(chat, session, "")
                 return
-            elif step < 3 and choice.isdigit() and int(choice) < len(self.questions(session)[step][1]):
+            elif step < 3 and choice in [str(i) for i in range(len(self.questions(session)[step][1]))]:
                 session.answers.append(self.questions(session)[step][1][int(choice)])
             else:
                 self.send(chat, "Выберите вариант в последней анкете.")
@@ -205,6 +254,7 @@ def main():
     delay = 2
     while True:
         try:
+            bot.prune_sessions()
             updates = api.call("getUpdates", offset=offset, timeout=25,
                                allowed_updates=["message", "callback_query"])
             for update in updates:

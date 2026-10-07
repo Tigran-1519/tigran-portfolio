@@ -93,6 +93,58 @@ class BotFlows(unittest.TestCase):
                 api.call("getMe")
         self.assertNotIn("PRIVATE_TEST_VALUE", str(caught.exception))
 
+    def test_unicode_digit_callback_cannot_crash_runner(self):
+        self.bot.handle(callback(self.bot, "²"))
+        self.assertEqual(self.bot.sessions[123].answers, [])
+
+    def test_expired_session_is_not_restored_on_delivery_failure(self):
+        self.bot.sessions[123].touched -= 1801
+        with patch.object(self.api, "call", side_effect=module.ApiError(502)):
+            with self.assertRaises(module.ApiError):
+                self.bot.handle(message("hello"))
+        self.assertNotIn(123, self.bot.sessions)
+
+    def test_idle_cleanup_removes_expired_sessions(self):
+        self.bot.sessions[123].touched -= 1801
+        self.bot.prune_sessions()
+        self.assertNotIn(123, self.bot.sessions)
+
+    def test_flood_is_bounded_and_other_chat_still_works(self):
+        for _ in range(100):
+            self.bot.handle(message("/start"))
+        self.assertLessEqual(len(self.api.calls), 24)
+        self.bot.handle(message("/start", chat=124))
+        self.assertIn(124, self.bot.sessions)
+
+    def test_callback_from_another_user_is_ignored(self):
+        forged = callback(self.bot, "0")
+        forged["callback_query"]["from"]["id"] = 124
+        before = len(self.api.calls)
+        self.bot.handle(forged)
+        self.assertEqual(len(self.api.calls), before)
+        self.assertEqual(self.bot.sessions[123].answers, [])
+
+    def test_cancel_deletes_data_even_when_confirmation_fails(self):
+        with patch.object(self.api, "call", side_effect=module.ApiError(502)):
+            with self.assertRaises(module.ApiError):
+                self.bot.handle(message("/cancel"))
+        self.assertNotIn(123, self.bot.sessions)
+
+    def test_invalid_updates_do_not_crash_or_send(self):
+        before = len(self.api.calls)
+        for update in [None, [], {"message": None}, {"callback_query": 5},
+                       {"message": {"chat": None}}, message(None)]:
+            self.bot.handle(update)
+        self.assertEqual(len(self.api.calls), before)
+
+    def test_rate_window_recovers(self):
+        for _ in range(30):
+            self.bot.handle(message("/start"))
+        with patch.object(module.time, "monotonic", return_value=module.time.monotonic() + 11):
+            before = len(self.api.calls)
+            self.bot.handle(message("/start"))
+            self.assertEqual(len(self.api.calls), before + 2)
+
     def test_next_question_recovers_after_temporary_delivery_failure(self):
         original = callback(self.bot, "1")
         real_call = self.api.call
