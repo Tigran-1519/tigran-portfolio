@@ -27,9 +27,10 @@ class StaticSecurity(unittest.TestCase):
                             if t == 'meta' and a.get('http-equiv', '').lower() == 'content-security-policy']
                 self.assertEqual(len(policies), 1)
                 position, policy = policies[0]
-                for directive in ["default-src 'none'", "connect-src 'none'", "base-uri 'none'",
+                for directive in ["default-src 'none'", "base-uri 'none'",
                                   "object-src 'none'", "form-action 'none'", "script-src-attr 'none'"]:
                     self.assertIn(directive, policy)
+                self.assertIn("connect-src https://tigran-portfolio-requests.tigran-shogoyan.chatgpt.site" if page.name == "index.html" else "connect-src 'none'", policy)
                 script_policy = next(d for d in policy.split(';') if d.strip().startswith('script-src '))
                 self.assertNotIn('unsafe-inline', script_policy)
                 self.assertNotIn('unsafe-eval', script_policy)

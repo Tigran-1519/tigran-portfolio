@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' ; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' ; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src 'self'; connect-src https://tigran-portfolio-requests.tigran-shogoyan.chatgpt.site; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#1b1d24">
 <meta name="description" content="Тигран Шогоян — сайты, web-сервисы и Telegram-боты. Пять работающих демонстраций: кабинет заявок, запись, лендинг, бриф-бот и регистрация.">
 <title>Тигран Шогоян — сайты, web-сервисы, боты</title>
@@ -39,7 +39,50 @@
   <div class="material-copy"><p>Проект обработки открытых данных и подготовки CSV. Схема объясняет последовательность действий.</p><p class="material-note">Здесь показана только схема: сбор данных, обработка и скачивание CSV на этой странице недоступны.</p><span class="material-status">Схема для ознакомления</span></div>
 </article>
 </section>
-<section class="editor-section wrap" aria-label="Локальный редактор текста"><div class="editor-lab"><div class="lab-heading"><span class="lab-number">Интерактивный пример</span><span>Попробуйте прямо здесь <span aria-hidden="true">↙</span></span></div><div class="editor-layout"><div class="editor-intro"><h2>Меняйте текст.<br>Смотрите результат.</h2><p>Заголовок, описание и кнопка обновляются сразу.</p><span class="editor-limitation">Локальное демо, изменения до перезагрузки.</span></div><div class="editor-workspace"><form id="editor-form" class="editor-controls"><div class="editor-toolbar"><strong>Текст страницы</strong><button id="editor-reset" class="quiet-button" type="button">Сбросить ↺</button></div><label for="editor-headline">Заголовок<input id="editor-headline" name="headline" maxlength="64" value="Место для ваших идей"></label><label for="editor-description">Описание<textarea id="editor-description" name="description" rows="3" maxlength="180">Одна понятная страница: расскажите об услуге и помогите посетителю сделать следующий шаг.</textarea></label><label for="editor-button">Текст кнопки<input id="editor-button" name="button" maxlength="28" value="Обсудить задачу"></label></form><div class="editor-preview"><span class="preview-label">Ваша страница / предпросмотр</span><h3 id="preview-headline">Место для ваших идей</h3><p id="preview-description">Одна понятная страница: расскажите об услуге и помогите посетителю сделать следующий шаг.</p><button id="preview-button" class="button button-blue" type="button" aria-describedby="preview-action-note">Обсудить задачу</button><p id="preview-action-note" class="preview-note" aria-live="polite">Кнопка показывает демонстрационное действие.</p></div></div></div></div></section>
+<section id="request" class="editor-section request-section wrap" aria-labelledby="request-heading">
+  <div class="editor-lab">
+    <div class="lab-heading"><span class="lab-number">Обсудим ваш проект</span><span>От идеи к задаче <span aria-hidden="true">↙</span></span></div>
+    <div class="editor-layout">
+      <div class="editor-intro">
+        <h2 id="request-heading">Расскажите о задаче.<br>Начнём с главного.</h2>
+        <p>Сайт, лендинг или Telegram-бот: что нужно сделать, какие материалы уже есть и когда нужен результат?</p>
+        <span class="editor-limitation">Справа — предпросмотр вашей заявки.</span>
+      </div>
+      <div class="editor-workspace">
+        <form id="editor-form" class="editor-controls">
+          <div class="editor-toolbar"><strong>Ваша задача</strong><button id="editor-reset" class="quiet-button" type="button">Очистить ↺</button></div>
+          <label for="editor-headline">Название задачи
+            <input id="editor-headline" name="headline" maxlength="100" required placeholder="Например, бот для получения заявок" autocomplete="off">
+          </label>
+          <label for="editor-description">Описание
+            <textarea id="editor-description" name="description" rows="12" minlength="20" maxlength="6000" required aria-describedby="description-hint description-count" placeholder="Расскажите, как всё должно работать. Можно добавить ссылки на примеры, перечень функций, пожелания по сроку и бюджету."></textarea>
+          </label>
+          <div class="request-field-meta"><span id="description-hint">От 20 до 6 000 символов. Переносы строк сохраняются.</span><output id="description-count" for="editor-description">0 / 6 000</output></div>
+          <label for="request-name">Как к вам обращаться <span class="request-optional">необязательно</span>
+            <input id="request-name" name="customerName" maxlength="100" placeholder="Имя или ФИО" autocomplete="name">
+          </label>
+          <label for="request-contact">Телефон, Telegram или email
+            <input id="request-contact" name="contact" maxlength="160" required placeholder="+374 …, @username или email" aria-describedby="contact-hint" autocomplete="off" autocapitalize="none" spellcheck="false">
+          </label>
+          <p id="contact-hint" class="request-hint">Укажите один удобный способ связи. Телефон — с кодом страны. По этому контакту я свяжусь с вами и уточню детали.</p>
+          <div class="request-trap" aria-hidden="true"><label>Ваш сайт<input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="request-consent"><input type="checkbox" name="consent" required><span>Согласен передать указанные имя, контакт и текст задачи Тиграну Шогояну в Telegram для обсуждения заявки.</span></label>
+          <p id="request-form-error" class="request-error" role="alert" hidden></p>
+        </form>
+        <div class="editor-preview">
+          <span class="preview-label">Ваша заявка / предпросмотр</span>
+          <h3 id="preview-headline">Название вашей задачи</h3>
+          <div id="preview-description" class="request-description" role="region" aria-label="Описание заявки" tabindex="0">Здесь появится описание. Заполните поля — и проверьте текст перед отправкой.</div>
+          <div class="request-actions">
+            <button id="preview-button" class="button button-blue" type="submit" form="editor-form" aria-describedby="preview-action-note">Отправить задачу</button>
+            <p id="preview-action-note" class="preview-note" role="status" aria-live="polite">Заявка придёт мне в Telegram. Ответ отправлю на указанный контакт.</p>
+            <a class="request-direct" href="https://t.me/tigr_SH" target="_blank" rel="noopener noreferrer">Написать в Telegram <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="approach wrap" id="approach" aria-labelledby="approach-title"><div class="process-layout"><div class="approach-header"><p class="eyebrow">Как работаю</p><h2 id="approach-title">От задачи<br>к готовой<br><span>работе.</span></h2><p>Использую Codex в разработке. Показываю промежуточный результат и проверяю его вместе с вами.</p><a class="process-contact" href="https://t.me/tigr_SH" target="_blank" rel="noopener noreferrer">Обсудить вашу задачу <span aria-hidden="true">↗</span></a></div>
 <ol class="process">
 <li><span class="step-number" aria-hidden="true">01</span><div class="step-body"><h3>Разбираемся в задаче</h3><p>Уточняем цель, материалы, примеры и нужное действие посетителя.</p><span class="step-result"><span aria-hidden="true">↳</span> Итог: понятное описание задачи</span></div></li>

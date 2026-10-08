@@ -79,4 +79,31 @@
 @media(max-width:600px){.portfolio-page .editor-section{padding:32px 0 44px}.lab-heading{font-size:11px;gap:14px;padding:18px 0}.lab-heading .lab-number{font-size:11px}.lab-heading>span:last-child{gap:10px}.portfolio-page .editor-intro{display:block;margin:10px 0 26px}.portfolio-page .editor-intro h2{font-size:34px;line-height:1.12;margin-bottom:18px}.portfolio-page .editor-intro>p{font-size:16px}.portfolio-page .editor-limitation{font-size:12px;margin-top:9px}.portfolio-page .editor-workspace{grid-template-columns:1fr;border-radius:12px}.portfolio-page .editor-controls{padding:20px;border-right:0;border-bottom:1px solid #cdd2dd}.portfolio-page .editor-toolbar{font-size:14px;margin-bottom:14px}.portfolio-page .editor-controls label{font-size:13px}.portfolio-page .editor-controls input,.portfolio-page .editor-controls textarea{font-size:16px}.portfolio-page .editor-preview{padding:26px 22px;min-height:340px}.portfolio-page .preview-label{font-size:10px;margin-bottom:26px}.portfolio-page .editor-preview h3{font-size:34px}.portfolio-page .editor-preview>p{font-size:16px}.portfolio-page .approach{padding:16px 0 44px}.process-layout{display:block;padding-top:30px}.portfolio-page .approach-header>.eyebrow{margin-bottom:22px}.portfolio-page .approach-header h2{font-size:44px;margin-bottom:24px}.portfolio-page .approach-header>p:not(.eyebrow){font-size:16px;max-width:none}.process-contact{margin-bottom:34px}.portfolio-page .process li,.portfolio-page .process li:first-child{padding:25px 0;border-top:1px solid var(--line);grid-template-columns:36px minmax(0,1fr);gap:18px}.portfolio-page .step-number{font-size:28px}.portfolio-page .process h3{font-size:23px}.portfolio-page .process p{font-size:16px}.step-result{font-size:13px;margin-top:14px}.portfolio-page .delivery-proof{margin-top:24px}}
 
 /* Live MemoBook site preview. */
+/* Project enquiry: spacious editor with a readable, bounded preview. */
+.portfolio-page .request-section .editor-workspace{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch}
+.portfolio-page .request-section .editor-controls{padding:32px}
+.portfolio-page .request-section .editor-controls label{font-size:14px;margin-bottom:24px}
+.portfolio-page .request-section .editor-controls textarea{min-height:280px;max-height:600px;resize:vertical;white-space:pre-wrap;overflow-wrap:anywhere}
+.portfolio-page .request-section .editor-controls label:has(textarea){margin-bottom:10px}
+.request-field-meta{display:flex;align-items:start;justify-content:space-between;gap:16px;color:var(--muted);font-size:12px;line-height:1.55}
+.request-field-meta output{flex-shrink:0;font-variant-numeric:tabular-nums;white-space:nowrap}
+.portfolio-page .request-section .editor-preview{justify-content:flex-start;padding:36px;min-height:0}
+.portfolio-page .request-section .preview-label{margin-bottom:28px}
+.portfolio-page .request-section .editor-preview h3{font-size:clamp(28px,2.5vw,40px);width:100%;max-width:none;text-wrap:initial}
+.request-description{font-size:16px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow-y:auto;width:100%;padding-right:10px;scrollbar-width:thin;scrollbar-color:#a6b1c7 transparent}
+.request-description:focus-visible{outline:3px solid var(--blue);outline-offset:5px}
+.request-actions{width:100%;margin-top:auto;padding-top:32px}
+.portfolio-page .request-section .request-actions .button{min-height:52px;font-size:16px;display:inline-flex;justify-content:center;margin:0}
+.portfolio-page .request-section .preview-note{font-size:13px!important;line-height:1.6;min-height:0;margin:14px 0 10px}
+.request-direct{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:14px;color:var(--blue);text-decoration:underline;text-underline-offset:4px}
+.request-error{margin:20px 0 0;font-size:14px;line-height:1.6;color:#9d2929}
+@media(max-width:1050px){.portfolio-page .request-section .editor-workspace{grid-template-columns:minmax(0,1fr)}.portfolio-page .request-section .editor-limitation{margin-top:10px}.portfolio-page .request-section .editor-preview{padding:28px 32px}.request-actions{padding-top:24px}}
+@media(max-width:600px){.portfolio-page .request-section .editor-controls,.portfolio-page .request-section .editor-preview{padding:22px 20px}.request-field-meta{flex-wrap:wrap;gap:4px 12px}.request-field-meta output{margin-left:auto}.portfolio-page .request-section .editor-controls textarea{min-height:300px}.portfolio-page .request-section .editor-preview h3{font-size:28px}.portfolio-page .request-section .request-actions .button{width:100%}.request-description{max-height:360px}.portfolio-page .request-section .editor-intro h2{font-size:32px}.request-section .lab-heading>span:last-child{display:none}}
 .memo-site-preview{min-width:0;height:410px;overflow:hidden;border:1px solid #d1d5dd;border-radius:6px;background:#f6f5ef}.memo-site-preview iframe{display:block;width:100%;height:100%;border:0}@media(max-width:650px){.memo-site-preview{height:380px}}
+/* Request form delivery controls */
+.request-section .request-hint{font-size:14px;margin:-16px 0 2px;color:#636a7b}
+.request-section .request-optional{display:inline;font-size:13px;font-weight:400;color:#636a7b}
+.request-section .request-consent{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.5;font-weight:400;cursor:pointer}
+.request-section .request-consent input{width:18px;height:18px;flex:0 0 18px;margin:2px 0 0;accent-color:#2955ff}
+.request-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.request-section button:disabled{cursor:default;opacity:.7}
